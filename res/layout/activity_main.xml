@@ -1,0 +1,219 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    tools:context=".MainActivity" >
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="BED 01"
+        android:onClick="getBed1Data"
+       />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Button01"
+        android:text="BED 02"
+        android:onClick="getBed2Data"/>
+         />
+
+    <Button
+        android:id="@+id/Button02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button1"
+        android:text="BED 03" 
+        android:onClick="getBed3Data"/>
+
+    <Button
+        android:id="@+id/Button03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Button02"
+        android:text="BED 04" 
+        android:onClick="getBed4Data"/>
+
+    <Button
+        android:id="@+id/Button04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Button03"
+        android:text="BED 05" 
+        android:onClick="getBed5Data"        
+        />
+
+    <Button
+        android:id="@+id/Button05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Button04"
+        android:text="BED 06" 
+        android:onClick="bedEmpty" 
+        />
+
+    <Button
+        android:id="@+id/Button06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Button05"
+        android:text="BED 07" />
+
+    <Button
+        android:id="@+id/Button07"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/Button06"
+        android:onClick="bedEmpty"
+        android:text="BED 08" />
+
+    <Button
+        android:id="@+id/Button08"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button1"
+        android:layout_alignParentRight="true"
+        android:onClick="bedEmpty"
+        android:text="BED 09" />
+
+    <Button
+        android:id="@+id/Button09"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Button02"
+        android:layout_alignParentRight="true"
+        android:onClick="bedEmpty"
+        android:text="BED 10" />
+
+    <Button
+        android:id="@+id/Button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Button03"
+        android:layout_alignParentRight="true"
+        android:onClick="bedEmpty"
+        android:text="BED 11" />
+
+    <Button
+        android:id="@+id/Button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Button04"
+        android:layout_alignParentRight="true"
+        android:onClick="bedEmpty"
+        android:text="BED 12" />
+
+    <Button
+        android:id="@+id/Button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Button05"
+        android:layout_alignParentRight="true"
+        android:onClick="bedEmpty"
+        android:text="BED 13" />
+
+    <Button
+        android:id="@+id/Button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Button06"
+        android:layout_alignParentRight="true"
+        android:onClick="bedEmpty"
+        android:text="BED 14" />
+
+    <Button
+        android:id="@+id/Button14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Button07"
+        android:layout_alignParentRight="true"
+        android:onClick="bedEmpty"
+        android:text="BED 15" />
+
+    <Button
+        android:id="@+id/Button15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/Button14"
+        android:onClick="bedEmpty"
+        android:text="BED 16" />
+
+    <WebView
+        android:id="@+id/webView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/Button06"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/Button10"
+        android:layout_toRightOf="@+id/Button01" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/imageButton1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="122dp"
+        android:onClick="getImages"
+        android:src="@drawable/img" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageButton6"
+        android:layout_centerHorizontal="true"
+        android:onClick="getCharts"
+        android:src="@drawable/charts" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/Button06"
+        android:layout_toLeftOf="@+id/imageButton5"
+        android:onClick="getPatientData"
+        android:src="@drawable/pd" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton1"
+        android:layout_toLeftOf="@+id/imageButton5"
+        android:onClick="getProgNotes"
+        android:src="@drawable/pn" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/imageButton2"
+        android:layout_toRightOf="@+id/imageButton2"
+        android:onClick="getLabResults"
+        android:src="@drawable/lab" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton3"
+        android:layout_toRightOf="@+id/imageButton2"
+        android:onClick="getClinicalOrders"
+        android:src="@drawable/co" />
+
+</RelativeLayout>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ICUDirect</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_screen">ScreenActivity</string>
+    <string name="title_activity_patient_data">PatientDataActivity</string>
+    <string name="title_activity_lab_results">LabResultsActivity</string>
+    <string name="title_activity_charts">ChartsActivity</string>
+    <string name="title_activity_images">ImagesActivity</string>
+    <string name="title_activity_progress_notes">ProgressNotesActivity</string>
+    <string name="title_activity_clinical_orders">ClinicalOrdersActivity</string>
+
+</resources>
