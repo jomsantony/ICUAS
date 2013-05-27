@@ -1,0 +1,1032 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.8
+-- Dumped by pg_dump version 9.1.8
+-- Started on 2013-05-26 19:55:05 IST
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 183 (class 3079 OID 11680)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2029 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 174 (class 1259 OID 24671)
+-- Dependencies: 1965 1966 1967 1968 1969 5
+-- Name: checkup_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE checkup_type (
+    checkup_type_id integer NOT NULL,
+    checkup_name character varying(20) DEFAULT NULL::character varying,
+    checkup_descp character varying(200) DEFAULT NULL::character varying,
+    checkup_type_param character varying(45) DEFAULT NULL::character varying,
+    created_time timestamp without time zone DEFAULT now() NOT NULL,
+    created_by character varying(45) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public.checkup_type OWNER TO postgres;
+
+--
+-- TOC entry 173 (class 1259 OID 24669)
+-- Dependencies: 5 174
+-- Name: checkup_type_checkup_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE checkup_type_checkup_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.checkup_type_checkup_type_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2030 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: checkup_type_checkup_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE checkup_type_checkup_type_id_seq OWNED BY checkup_type.checkup_type_id;
+
+
+--
+-- TOC entry 162 (class 1259 OID 24603)
+-- Dependencies: 5
+-- Name: disease; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE disease (
+    disease_id integer NOT NULL,
+    disease_type_id integer NOT NULL,
+    disease character varying(200),
+    remarks character varying(2000),
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45)
+);
+
+
+ALTER TABLE public.disease OWNER TO postgres;
+
+--
+-- TOC entry 161 (class 1259 OID 24601)
+-- Dependencies: 162 5
+-- Name: disease_disease_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE disease_disease_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.disease_disease_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2031 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: disease_disease_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE disease_disease_id_seq OWNED BY disease.disease_id;
+
+
+--
+-- TOC entry 164 (class 1259 OID 24614)
+-- Dependencies: 5
+-- Name: disease_type; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE disease_type (
+    disease_type_id integer NOT NULL,
+    disease_type character varying(200),
+    remarks character varying(2000),
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45)
+);
+
+
+ALTER TABLE public.disease_type OWNER TO postgres;
+
+--
+-- TOC entry 163 (class 1259 OID 24612)
+-- Dependencies: 164 5
+-- Name: disease_type_disease_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE disease_type_disease_type_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.disease_type_disease_type_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2032 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: disease_type_disease_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE disease_type_disease_type_id_seq OWNED BY disease_type.disease_type_id;
+
+
+--
+-- TOC entry 168 (class 1259 OID 24639)
+-- Dependencies: 5
+-- Name: doctor; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE doctor (
+    doctor_id integer NOT NULL,
+    first_name character varying(50),
+    middle_name character varying(50),
+    last_name character varying(50),
+    doctor_address character varying(200),
+    city character varying(50),
+    state character varying(50),
+    pin character varying(50),
+    country character varying(50),
+    sex character varying(50),
+    landline character varying(50),
+    mobile character varying(50),
+    photo_path character varying(300),
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45)
+);
+
+
+ALTER TABLE public.doctor OWNER TO postgres;
+
+--
+-- TOC entry 167 (class 1259 OID 24637)
+-- Dependencies: 168 5
+-- Name: doctor_doctor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE doctor_doctor_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.doctor_doctor_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2033 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: doctor_doctor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE doctor_doctor_id_seq OWNED BY doctor.doctor_id;
+
+
+--
+-- TOC entry 176 (class 1259 OID 24684)
+-- Dependencies: 5
+-- Name: icu_admit; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE icu_admit (
+    icu_admit_id integer NOT NULL,
+    patient_adm_id integer NOT NULL,
+    icu_bed_id integer NOT NULL,
+    remarks character varying(2000),
+    checkin_time timestamp without time zone NOT NULL,
+    checkout_time timestamp without time zone,
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45)
+);
+
+
+ALTER TABLE public.icu_admit OWNER TO postgres;
+
+--
+-- TOC entry 175 (class 1259 OID 24682)
+-- Dependencies: 5 176
+-- Name: icu_admit_icu_admit_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE icu_admit_icu_admit_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.icu_admit_icu_admit_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2034 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: icu_admit_icu_admit_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE icu_admit_icu_admit_id_seq OWNED BY icu_admit.icu_admit_id;
+
+
+--
+-- TOC entry 182 (class 1259 OID 24730)
+-- Dependencies: 1976 1977 5
+-- Name: icu_bed; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE icu_bed (
+    icu_bed_id integer NOT NULL,
+    icu_bed_name character varying(20),
+    icu_admit_id integer,
+    status character varying(1) DEFAULT 'F'::character varying NOT NULL,
+    created_by character varying(45),
+    updated_by character varying(45),
+    icu_bed_enable_stat character varying(12) DEFAULT 'Y'::character varying NOT NULL
+);
+
+
+ALTER TABLE public.icu_bed OWNER TO postgres;
+
+--
+-- TOC entry 181 (class 1259 OID 24728)
+-- Dependencies: 182 5
+-- Name: icu_bed_icu_bed_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE icu_bed_icu_bed_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.icu_bed_icu_bed_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2035 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: icu_bed_icu_bed_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE icu_bed_icu_bed_id_seq OWNED BY icu_bed.icu_bed_id;
+
+
+--
+-- TOC entry 166 (class 1259 OID 24625)
+-- Dependencies: 5
+-- Name: patient; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE patient (
+    patient_id integer NOT NULL,
+    first_name character varying(50),
+    middle_name character varying(50),
+    last_name character varying(50),
+    age integer NOT NULL,
+    patient_address character varying(200),
+    city character varying(50),
+    state character varying(50),
+    pin character varying(50),
+    country character varying(50),
+    sex character varying(50),
+    landline character varying(50),
+    mobile character varying(50),
+    photo_path character varying(300),
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45)
+);
+
+
+ALTER TABLE public.patient OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 24718)
+-- Dependencies: 1974 5
+-- Name: patient_adm_file_info; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE patient_adm_file_info (
+    patient_adm_file_info_id integer NOT NULL,
+    patient_adm_id integer NOT NULL,
+    admit_type character varying(2) DEFAULT 'IP'::character varying NOT NULL,
+    path character varying(2000),
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45),
+    updated_by character varying(45)
+);
+
+
+ALTER TABLE public.patient_adm_file_info OWNER TO postgres;
+
+--
+-- TOC entry 179 (class 1259 OID 24716)
+-- Dependencies: 180 5
+-- Name: patient_adm_file_info_patient_adm_file_info_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE patient_adm_file_info_patient_adm_file_info_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_adm_file_info_patient_adm_file_info_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2036 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: patient_adm_file_info_patient_adm_file_info_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE patient_adm_file_info_patient_adm_file_info_id_seq OWNED BY patient_adm_file_info.patient_adm_file_info_id;
+
+
+--
+-- TOC entry 178 (class 1259 OID 24705)
+-- Dependencies: 1972 5
+-- Name: patient_adm_prog_notes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE patient_adm_prog_notes (
+    patient_adm_prog_notes_id integer NOT NULL,
+    patient_adm_id integer NOT NULL,
+    remarks character varying(2000),
+    admit_type character varying(2) DEFAULT 'IP'::character varying NOT NULL,
+    created_time timestamp without time zone NOT NULL,
+    updated_time timestamp without time zone NOT NULL,
+    created_by character varying(45),
+    updated_by character varying(45)
+);
+
+
+ALTER TABLE public.patient_adm_prog_notes OWNER TO postgres;
+
+--
+-- TOC entry 177 (class 1259 OID 24703)
+-- Dependencies: 5 178
+-- Name: patient_adm_prog_notes_patient_adm_prog_notes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE patient_adm_prog_notes_patient_adm_prog_notes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_adm_prog_notes_patient_adm_prog_notes_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2037 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: patient_adm_prog_notes_patient_adm_prog_notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE patient_adm_prog_notes_patient_adm_prog_notes_id_seq OWNED BY patient_adm_prog_notes.patient_adm_prog_notes_id;
+
+
+--
+-- TOC entry 170 (class 1259 OID 24650)
+-- Dependencies: 1961 5
+-- Name: patient_admit; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE patient_admit (
+    patient_adm_id integer NOT NULL,
+    patient_id integer NOT NULL,
+    admit_type character varying(2) DEFAULT 'IP'::character varying NOT NULL,
+    doctor_in_charge integer,
+    disease_id integer NOT NULL,
+    remarks character varying(2000),
+    checkin_time timestamp without time zone NOT NULL,
+    checkout_time timestamp without time zone,
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45),
+    risks character varying(30)
+);
+
+
+ALTER TABLE public.patient_admit OWNER TO postgres;
+
+--
+-- TOC entry 169 (class 1259 OID 24648)
+-- Dependencies: 170 5
+-- Name: patient_admit_patient_adm_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE patient_admit_patient_adm_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_admit_patient_adm_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2038 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: patient_admit_patient_adm_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE patient_admit_patient_adm_id_seq OWNED BY patient_admit.patient_adm_id;
+
+
+--
+-- TOC entry 172 (class 1259 OID 24662)
+-- Dependencies: 1963 5
+-- Name: patient_checkup; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE patient_checkup (
+    checkup_id integer NOT NULL,
+    patient_adm_id integer NOT NULL,
+    checkup_type_id integer NOT NULL,
+    checkup_reading numeric(10,2) DEFAULT 0.00 NOT NULL,
+    checkup_time timestamp without time zone NOT NULL,
+    created_time timestamp without time zone NOT NULL,
+    created_by character varying(45)
+);
+
+
+ALTER TABLE public.patient_checkup OWNER TO postgres;
+
+--
+-- TOC entry 171 (class 1259 OID 24660)
+-- Dependencies: 172 5
+-- Name: patient_checkup_checkup_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE patient_checkup_checkup_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_checkup_checkup_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2039 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: patient_checkup_checkup_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE patient_checkup_checkup_id_seq OWNED BY patient_checkup.checkup_id;
+
+
+--
+-- TOC entry 165 (class 1259 OID 24623)
+-- Dependencies: 166 5
+-- Name: patient_patient_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE patient_patient_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.patient_patient_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2040 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: patient_patient_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE patient_patient_id_seq OWNED BY patient.patient_id;
+
+
+--
+-- TOC entry 1964 (class 2604 OID 24674)
+-- Dependencies: 174 173 174
+-- Name: checkup_type_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY checkup_type ALTER COLUMN checkup_type_id SET DEFAULT nextval('checkup_type_checkup_type_id_seq'::regclass);
+
+
+--
+-- TOC entry 1956 (class 2604 OID 24606)
+-- Dependencies: 162 161 162
+-- Name: disease_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY disease ALTER COLUMN disease_id SET DEFAULT nextval('disease_disease_id_seq'::regclass);
+
+
+--
+-- TOC entry 1957 (class 2604 OID 24617)
+-- Dependencies: 163 164 164
+-- Name: disease_type_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY disease_type ALTER COLUMN disease_type_id SET DEFAULT nextval('disease_type_disease_type_id_seq'::regclass);
+
+
+--
+-- TOC entry 1959 (class 2604 OID 24642)
+-- Dependencies: 168 167 168
+-- Name: doctor_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY doctor ALTER COLUMN doctor_id SET DEFAULT nextval('doctor_doctor_id_seq'::regclass);
+
+
+--
+-- TOC entry 1970 (class 2604 OID 24687)
+-- Dependencies: 175 176 176
+-- Name: icu_admit_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY icu_admit ALTER COLUMN icu_admit_id SET DEFAULT nextval('icu_admit_icu_admit_id_seq'::regclass);
+
+
+--
+-- TOC entry 1975 (class 2604 OID 24733)
+-- Dependencies: 182 181 182
+-- Name: icu_bed_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY icu_bed ALTER COLUMN icu_bed_id SET DEFAULT nextval('icu_bed_icu_bed_id_seq'::regclass);
+
+
+--
+-- TOC entry 1958 (class 2604 OID 24628)
+-- Dependencies: 166 165 166
+-- Name: patient_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY patient ALTER COLUMN patient_id SET DEFAULT nextval('patient_patient_id_seq'::regclass);
+
+
+--
+-- TOC entry 1973 (class 2604 OID 24721)
+-- Dependencies: 179 180 180
+-- Name: patient_adm_file_info_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY patient_adm_file_info ALTER COLUMN patient_adm_file_info_id SET DEFAULT nextval('patient_adm_file_info_patient_adm_file_info_id_seq'::regclass);
+
+
+--
+-- TOC entry 1971 (class 2604 OID 24708)
+-- Dependencies: 177 178 178
+-- Name: patient_adm_prog_notes_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY patient_adm_prog_notes ALTER COLUMN patient_adm_prog_notes_id SET DEFAULT nextval('patient_adm_prog_notes_patient_adm_prog_notes_id_seq'::regclass);
+
+
+--
+-- TOC entry 1960 (class 2604 OID 24653)
+-- Dependencies: 170 169 170
+-- Name: patient_adm_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY patient_admit ALTER COLUMN patient_adm_id SET DEFAULT nextval('patient_admit_patient_adm_id_seq'::regclass);
+
+
+--
+-- TOC entry 1962 (class 2604 OID 24665)
+-- Dependencies: 172 171 172
+-- Name: checkup_id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY patient_checkup ALTER COLUMN checkup_id SET DEFAULT nextval('patient_checkup_checkup_id_seq'::regclass);
+
+
+--
+-- TOC entry 2013 (class 0 OID 24671)
+-- Dependencies: 174 2022
+-- Data for Name: checkup_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY checkup_type (checkup_type_id, checkup_name, checkup_descp, checkup_type_param, created_time, created_by) FROM stdin;
+1	TEMP	TEMPERATURE	°C	2013-04-07 19:28:24.050172	admin
+2	SYS PRES	SYSTOLIC BLOOD PRESSURE	HG	2013-04-07 22:41:44.039496	admin
+3	DAIS PRES	DIASTOLIC BLODD PRESSURE	HG	2013-04-07 22:44:05.074209	admin
+4	RESP RATE	RESPIRATION RATE	B/S	2013-04-07 22:45:31.016584	admin
+5	BLOOD SUGAR	BLOOD SUGAR-DAIBETICS	PPM	2013-04-07 22:46:52.664546	admin
+6	HDL	HDL CHOLOSTROL	PPM	2013-04-07 22:47:35.899762	admin
+7	LDL	LDL CHOLOSTROL	PPM	2013-04-07 22:48:02.369032	admin
+\.
+
+
+--
+-- TOC entry 2041 (class 0 OID 0)
+-- Dependencies: 173
+-- Name: checkup_type_checkup_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('checkup_type_checkup_type_id_seq', 1, true);
+
+
+--
+-- TOC entry 2001 (class 0 OID 24603)
+-- Dependencies: 162 2022
+-- Data for Name: disease; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY disease (disease_id, disease_type_id, disease, remarks, created_time, created_by) FROM stdin;
+2	1	Alagille syndrome	Alagille syndrome is a genetic disorder that affects the liver, heart, kidney, and other systems of the body. Problems associated with the disorder generally become evident in infancy or early childhood. The disorder is inherited in an autosomal dominant pattern, and the estimated prevalence of Alagille syndrome is 1 in every 100,000 live births.\nIt is named for Daniel Alagille.	2013-04-07 19:22:28.659415	admin
+3	2	Fracture	left foot	2013-04-04 12:00:00	admin
+4	2	Fracture	left hand	2013-04-05 12:00:00	admin
+5	2	Fracture	right foot	2013-04-03 00:00:00	admin
+1	1	Fracture on Left Arm  	Atypical hemolytic uremic syndrome (aHUS) is a very rare, life-threatening, progressive disease that frequently has a genetic component. In most cases it is caused by chronic, uncontrolled activation of the complement system,[1] a branch of the bodys immune system that destroys and removes foreign particles.[2] The disease affects both children and adults and is characterized by systemic thrombotic microangiopathy (TMA), the formation of blood clots in small blood vessels throughout the body, which can lead to stroke, heart attack, kidney failure, and death.	2013-04-07 19:22:28.659415	admin
+\.
+
+
+--
+-- TOC entry 2042 (class 0 OID 0)
+-- Dependencies: 161
+-- Name: disease_disease_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('disease_disease_id_seq', 2, true);
+
+
+--
+-- TOC entry 2003 (class 0 OID 24614)
+-- Dependencies: 164 2022
+-- Data for Name: disease_type; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY disease_type (disease_type_id, disease_type, remarks, created_time, created_by) FROM stdin;
+1	Diseases and disorders by system		2013-04-07 19:22:19.418089	admin
+2	TUBERCULOSIS	NC	2013-04-04 12:00:00	ADMIN
+3	VIRUS	NC	2013-04-04 12:00:00	ADMIN
+4	VIRAL FEVER	NC	2013-04-04 12:00:00	ADMIN
+5	INFECTIONS	NC	2013-04-04 12:00:00	ADMIN
+6	POISON	NC	2013-03-04 12:00:00	ADMIN
+\.
+
+
+--
+-- TOC entry 2043 (class 0 OID 0)
+-- Dependencies: 163
+-- Name: disease_type_disease_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('disease_type_disease_type_id_seq', 1, true);
+
+
+--
+-- TOC entry 2007 (class 0 OID 24639)
+-- Dependencies: 168 2022
+-- Data for Name: doctor; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY doctor (doctor_id, first_name, middle_name, last_name, doctor_address, city, state, pin, country, sex, landline, mobile, photo_path, created_time, created_by) FROM stdin;
+1	Arun		Khosh	Ushus, Pothenpuzha P O	Kottayam	Kerala	686560	India	\N	\N	\N		2013-04-07 19:27:42.164951	admin
+\.
+
+
+--
+-- TOC entry 2044 (class 0 OID 0)
+-- Dependencies: 167
+-- Name: doctor_doctor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('doctor_doctor_id_seq', 1, true);
+
+
+--
+-- TOC entry 2015 (class 0 OID 24684)
+-- Dependencies: 176 2022
+-- Data for Name: icu_admit; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY icu_admit (icu_admit_id, patient_adm_id, icu_bed_id, remarks, checkin_time, checkout_time, created_time, created_by) FROM stdin;
+1	1	1	SERIOUS CASE	2013-04-07 20:03:15.323929	\N	2013-04-07 20:03:15.323929	admin
+2	2	2	CRITICAL	2013-04-07 12:00:00	\N	2013-04-07 20:00:00	admin
+3	3	3	INJURY	2013-04-07 21:00:00	\N	2013-04-07 22:00:00	admin
+4	4	4	FRACTURE	2013-04-07 14:00:00	\N	2013-04-07 20:00:00	admin
+5	5	5	ARM FRACTURE	2013-03-03 12:00:00	\N	2013-03-03 12:00:00	ADMIN
+\.
+
+
+--
+-- TOC entry 2045 (class 0 OID 0)
+-- Dependencies: 175
+-- Name: icu_admit_icu_admit_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('icu_admit_icu_admit_id_seq', 2, true);
+
+
+--
+-- TOC entry 2021 (class 0 OID 24730)
+-- Dependencies: 182 2022
+-- Data for Name: icu_bed; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY icu_bed (icu_bed_id, icu_bed_name, icu_admit_id, status, created_by, updated_by, icu_bed_enable_stat) FROM stdin;
+6	BED6	\N	F	\N	\N	N
+7	BED7	\N	F	\N	\N	N
+8	BED8	\N	F	\N	\N	N
+9	BED9	\N	F	\N	\N	N
+10	BED10	\N	F	\N	\N	N
+11	BED11	\N	F	\N	\N	N
+12	BED12	\N	F	\N	\N	N
+13	BED13	\N	F	\N	\N	N
+14	BED14	\N	F	\N	\N	N
+15	BED15	\N	F	\N	\N	N
+16	BED16	\N	F	\N	\N	N
+17	BED17	\N	F	\N	\N	N
+18	BED18	\N	F	\N	\N	N
+1	BED1	1	o	\N	\N	Y
+5	BED5	5	o	\N	\N	N
+4	BED4	4	o	\N	\N	Y
+3	BED3	3	o	\N	\N	Y
+2	BED2	2	o	\N	\N	Y
+\.
+
+
+--
+-- TOC entry 2046 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: icu_bed_icu_bed_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('icu_bed_icu_bed_id_seq', 18, true);
+
+
+--
+-- TOC entry 2005 (class 0 OID 24625)
+-- Dependencies: 166 2022
+-- Data for Name: patient; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY patient (patient_id, first_name, middle_name, last_name, age, patient_address, city, state, pin, country, sex, landline, mobile, photo_path, created_time, created_by) FROM stdin;
+4	Bichu	\N	Vijayan	27	Bichu sadan	Kottayam	Kerala	686542	India	M	2454321	9987654367	bichu.jpg	2013-04-04 12:00:00	admin
+5	Sudhin	\N	Joy	27	Sudhins	Thodupuzha	Kerala	676543	India	M	458765	9978654367	sudhin.jpg	2013-04-04 12:00:00	admin
+3	Asha	\N	Yeldos	24	Asha Bhavan	Ernakulam	Kerala	686754	India	F	256543	99765432	asha.png	2013-04-04 12:00:00	admin
+2	Santhosh 	\N	GS	31	Santhosh Bhavan	Trivandrum	Kerala	686541	India	M	267549	998786543	santhosh.jpg	2013-04-07 20:24:43.424409	admin
+1	Joms	\N	Antony	29	Vazheeparampil	Kottayam	Kerala	686542	India	M	2485741	9961884117	joms.jpg	2013-04-04 12:00:00	admin
+\.
+
+
+--
+-- TOC entry 2019 (class 0 OID 24718)
+-- Dependencies: 180 2022
+-- Data for Name: patient_adm_file_info; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY patient_adm_file_info (patient_adm_file_info_id, patient_adm_id, admit_type, path, created_time, created_by, updated_by) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2047 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: patient_adm_file_info_patient_adm_file_info_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('patient_adm_file_info_patient_adm_file_info_id_seq', 1, false);
+
+
+--
+-- TOC entry 2017 (class 0 OID 24705)
+-- Dependencies: 178 2022
+-- Data for Name: patient_adm_prog_notes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY patient_adm_prog_notes (patient_adm_prog_notes_id, patient_adm_id, remarks, admit_type, created_time, updated_time, created_by, updated_by) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2048 (class 0 OID 0)
+-- Dependencies: 177
+-- Name: patient_adm_prog_notes_patient_adm_prog_notes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('patient_adm_prog_notes_patient_adm_prog_notes_id_seq', 1, false);
+
+
+--
+-- TOC entry 2009 (class 0 OID 24650)
+-- Dependencies: 170 2022
+-- Data for Name: patient_admit; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY patient_admit (patient_adm_id, patient_id, admit_type, doctor_in_charge, disease_id, remarks, checkin_time, checkout_time, created_time, created_by, risks) FROM stdin;
+1	1	IP	1	1	NC	2013-03-28 12:00:00	2013-04-03 12:00:00	2013-04-07 19:28:24.050172	admin	virus-1
+3	3	IP	1	3	NC	2013-03-06 14:00:00	\N	2013-03-01 15:00:00	admin	virus-3
+2	2	IP	1	2	NC	2013-03-08 23:00:00	\N	2013-03-04 00:00:00	admin	virus-2
+4	4	IP	1	4	NC	2013-04-04 12:00:00	\N	2013-03-04 16:00:00	admin	virus-4
+5	5	IP	1	5	NC	2013-03-03 14:00:00	\N	2013-03-05 19:00:00	admin	virus-5
+\.
+
+
+--
+-- TOC entry 2049 (class 0 OID 0)
+-- Dependencies: 169
+-- Name: patient_admit_patient_adm_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('patient_admit_patient_adm_id_seq', 1, true);
+
+
+--
+-- TOC entry 2011 (class 0 OID 24662)
+-- Dependencies: 172 2022
+-- Data for Name: patient_checkup; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY patient_checkup (checkup_id, patient_adm_id, checkup_type_id, checkup_reading, checkup_time, created_time, created_by) FROM stdin;
+1	1	1	100.00	2013-03-28 09:00:00	2013-04-07 19:28:24.050172	admin
+2	1	1	95.00	2013-03-28 12:00:00	2013-04-07 19:28:24.050172	admin
+3	1	1	80.00	2013-03-28 15:00:00	2013-04-07 19:28:24.050172	admin
+4	1	1	86.00	2013-03-28 18:00:00	2013-04-07 19:28:24.050172	admin
+\.
+
+
+--
+-- TOC entry 2050 (class 0 OID 0)
+-- Dependencies: 171
+-- Name: patient_checkup_checkup_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('patient_checkup_checkup_id_seq', 4, true);
+
+
+--
+-- TOC entry 2051 (class 0 OID 0)
+-- Dependencies: 165
+-- Name: patient_patient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('patient_patient_id_seq', 7, true);
+
+
+--
+-- TOC entry 1991 (class 2606 OID 24681)
+-- Dependencies: 174 174 2023
+-- Name: checkup_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY checkup_type
+    ADD CONSTRAINT checkup_type_pkey PRIMARY KEY (checkup_type_id);
+
+
+--
+-- TOC entry 1979 (class 2606 OID 24611)
+-- Dependencies: 162 162 2023
+-- Name: disease_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY disease
+    ADD CONSTRAINT disease_pkey PRIMARY KEY (disease_id);
+
+
+--
+-- TOC entry 1981 (class 2606 OID 24622)
+-- Dependencies: 164 164 2023
+-- Name: disease_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY disease_type
+    ADD CONSTRAINT disease_type_pkey PRIMARY KEY (disease_type_id);
+
+
+--
+-- TOC entry 1985 (class 2606 OID 24647)
+-- Dependencies: 168 168 2023
+-- Name: doctor_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY doctor
+    ADD CONSTRAINT doctor_pkey PRIMARY KEY (doctor_id);
+
+
+--
+-- TOC entry 1993 (class 2606 OID 24692)
+-- Dependencies: 176 176 2023
+-- Name: icu_admit_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY icu_admit
+    ADD CONSTRAINT icu_admit_pkey PRIMARY KEY (icu_admit_id);
+
+
+--
+-- TOC entry 1999 (class 2606 OID 24737)
+-- Dependencies: 182 182 2023
+-- Name: icu_bed_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY icu_bed
+    ADD CONSTRAINT icu_bed_pkey PRIMARY KEY (icu_bed_id);
+
+
+--
+-- TOC entry 1997 (class 2606 OID 24727)
+-- Dependencies: 180 180 2023
+-- Name: patient_adm_file_info_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY patient_adm_file_info
+    ADD CONSTRAINT patient_adm_file_info_pkey PRIMARY KEY (patient_adm_file_info_id);
+
+
+--
+-- TOC entry 1995 (class 2606 OID 24714)
+-- Dependencies: 178 178 2023
+-- Name: patient_adm_prog_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY patient_adm_prog_notes
+    ADD CONSTRAINT patient_adm_prog_notes_pkey PRIMARY KEY (patient_adm_prog_notes_id);
+
+
+--
+-- TOC entry 1987 (class 2606 OID 24659)
+-- Dependencies: 170 170 2023
+-- Name: patient_admit_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY patient_admit
+    ADD CONSTRAINT patient_admit_pkey PRIMARY KEY (patient_adm_id);
+
+
+--
+-- TOC entry 1989 (class 2606 OID 24668)
+-- Dependencies: 172 172 2023
+-- Name: patient_checkup_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY patient_checkup
+    ADD CONSTRAINT patient_checkup_pkey PRIMARY KEY (checkup_id);
+
+
+--
+-- TOC entry 1983 (class 2606 OID 24633)
+-- Dependencies: 166 166 2023
+-- Name: patient_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY patient
+    ADD CONSTRAINT patient_pkey PRIMARY KEY (patient_id);
+
+
+--
+-- TOC entry 2028 (class 0 OID 0)
+-- Dependencies: 5
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2013-05-26 19:55:06 IST
+
+--
+-- PostgreSQL database dump complete
+--
+
